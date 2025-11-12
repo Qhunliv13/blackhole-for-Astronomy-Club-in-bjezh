@@ -57,7 +57,7 @@
             黑洞由大质量恒星在生命末期发生引力坍缩形成。其核心被压缩到极小体积，周围围绕着被称为“事件视界”的临界界线。任何物质或辐射一旦越过事件视界，便无法返回。
           </p>
           <p>
-            想要形成黑洞，需要满足几项条件：恒星初始质量需超过约 20 个太阳质量；核聚变耗尽后无法维持向外的压力；坍缩时残余质量超过钱德拉塞卡极限（约 1.4 个太阳质量）（就是白矮星能拥有的最大质量上限）和托尔曼–奥本海默–沃尔科夫极限（TOV极限，中子星能拥有的最大质量上限，约为 3 个太阳质量，最初估计为0.7个太阳质量），中子星与白矮星都无力支撑，自身重力才会把时空挤出黑洞。
+            想要形成黑洞，需要满足几项条件：恒星初始质量需超过约 20 个太阳质量；核聚变耗尽后无法维持向外的压力；坍缩时残余质量超过钱德拉塞卡极限（约 1.4 个太阳质量）（就是白矮星能拥有的最大质量上限）和托尔曼–奥本海默–沃尔科夫极限（TOV极限，中子星能拥有的最大质量上限，约为 3 个太阳质量，最初估计为0.7个太阳质量），中子星与白矮星都无力支撑，自身重力才会坍缩成黑洞。
           </p>
           <p>
             虽然黑洞本身不可见，但科学家可以通过观测吸积盘的高速旋转、喷流辐射以及引力透镜效应，间接捕捉黑洞的存在与特性。
@@ -130,7 +130,7 @@
           <article class="timeline__item">
             <div class="timeline__card">
               <header class="timeline__header">
-                <span class="timeline__year">1930s</span>
+                <span class="timeline__year">1930</span>
                 <span class="timeline__tag">坍缩预言</span>
               </header>
               <h3>坍缩与奇点的预测</h3>
@@ -304,15 +304,25 @@
         <h2>计算史瓦西半径</h2>
         <p>输入黑洞的质量（以太阳质量为单位），快速估算事件视界半径。</p>
         <form class="calculator" id="schwarzschild-form">
-          <label for="mass-input">黑洞质量 (M / M<sub>☉</sub>)</label>
-          <input type="number" id="mass-input" min="0" step="0.1" value="10" required>
+          <label for="mass-input">黑洞质量 (吨)</label>
+          <input type="number" id="mass-input" min="0" step="any" value="1e12" required>
           <div class="calculator__result">
             <p>估算半径：</p>
             <p id="radius-output" class="calculator__value">29.50 km</p>
           </div>
           <button type="submit">计算</button>
         </form>
-        <p class="calculator__note">公式来源：史瓦西解 R<sub>s</sub> = 2GM / c²，经常数化简得到 2.95 km × (M / M<sub>☉</sub>)。</p>
+        <p class="calculator__note">公式来源：史瓦西解 R<sub>s</sub> = 2GM / c²，计算时使用国际单位制常数 G = 6.67430×10<sup>−11</sup> m³/(kg·s²)、c = 299792458 m/s，并将输入的吨数换算为千克。</p>
+        <aside class="calculator-samples">
+          <h3>快速填入常见天体</h3>
+          <ul id="mass-presets">
+            <li><button type="button" data-mass-tons="5.97e18">地球 (5.97×10<sup>21</sup> kg)</button></li>
+            <li><button type="button" data-mass-tons="1.99e27">太阳 (1.99×10<sup>30</sup> kg)</button></li>
+            <li><button type="button" data-mass-tons="8.0e30">参宿四 (8.0×10<sup>33</sup> kg)</button></li>
+            <li><button type="button" data-mass-tons="6.5e39">M87* 黑洞 (6.5×10<sup>42</sup> kg)</button></li>
+            <li><button type="button" data-mass-tons="4.3e36">人马座 A* (4.3×10<sup>39</sup> kg)</button></li>
+          </ul>
+        </aside>
       </div>
     </section>
 

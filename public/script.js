@@ -3,24 +3,50 @@ const massInput = document.querySelector('#mass-input');
 const radiusOutput = document.querySelector('#radius-output');
 const currentYearEl = document.querySelector('#current-year');
 
-const SCHWARZSCHILD_COEFFICIENT = 2.95;
+const G = 6.6743e-11; // m^3 kg^-1 s^-2
+const C = 299792458; // m s^-1
+const TON_TO_KG = 1000;
 
-function formatRadius(value) {
+function formatRadiusMeters(value) {
   if (!Number.isFinite(value)) {
     return '—';
   }
-  if (value >= 1e6) {
-    return `${(value / 1e6).toFixed(2)} 百万 km`;
+
+  const abs = Math.abs(value);
+  if (abs === 0) {
+    return '0 m';
   }
-  if (value >= 1e3) {
-    return `${(value / 1e3).toFixed(2)} 千 km`;
+
+  const UNITS = [
+    { factor: 1e12, suffix: 'Tm' },
+    { factor: 1e9, suffix: 'Gm' },
+    { factor: 1e6, suffix: 'Mm' },
+    { factor: 1e3, suffix: 'km' },
+    { factor: 1, suffix: 'm' },
+    { factor: 1e-3, suffix: 'mm' },
+    { factor: 1e-6, suffix: 'µm' },
+  ];
+
+  for (const unit of UNITS) {
+    if (abs >= unit.factor) {
+      const scaled = value / unit.factor;
+      if (Math.abs(scaled) >= 100) {
+        return `${scaled.toFixed(1)} ${unit.suffix}`;
+      }
+      if (Math.abs(scaled) >= 1) {
+        return `${scaled.toFixed(3)} ${unit.suffix}`;
+      }
+      return `${scaled.toPrecision(3)} ${unit.suffix}`;
+    }
   }
-  return `${value.toFixed(2)} km`;
+
+  return `${value.toExponential(3)} m`;
 }
 
-function updateRadius(mass) {
-  const radius = mass * SCHWARZSCHILD_COEFFICIENT;
-  radiusOutput.textContent = formatRadius(radius);
+function updateRadius(massTons) {
+  const massKg = massTons * TON_TO_KG;
+  const radiusMeters = (2 * G * massKg) / (C ** 2);
+  radiusOutput.textContent = formatRadiusMeters(radiusMeters);
 }
 
 if (form && massInput) {
@@ -33,6 +59,22 @@ if (form && massInput) {
     }
     updateRadius(massValue);
   });
+
+  const presetList = document.querySelector('#mass-presets');
+  if (presetList) {
+    presetList.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-mass-tons]');
+      if (!button) {
+        return;
+      }
+      const presetMass = Number.parseFloat(button.dataset.massTons);
+      if (!Number.isFinite(presetMass) || presetMass <= 0) {
+        return;
+      }
+      massInput.value = presetMass;
+      updateRadius(presetMass);
+    });
+  }
 
   updateRadius(Number.parseFloat(massInput.value));
 }
