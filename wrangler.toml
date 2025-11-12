@@ -1,0 +1,10 @@
+name = "blackhole-site"
+main = "src/worker.js"
+compatibility_date = "2025-11-12"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+html_handling = "rewrite"
+not_found_handling = "404"
+

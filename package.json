@@ -1,0 +1,12 @@
+{
+  "name": "blackhole",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static black hole information site.",
+  "scripts": {
+    "build": "echo \"Static site build step not required\"",
+    "start": "npx wrangler dev",
+    "deploy": "npx wrangler deploy"
+  }
+}
+
