@@ -14,7 +14,10 @@
 <body>
   <nav class="top-nav" id="top-nav">
     <div class="container top-nav__content">
-      <a class="top-nav__brand" href="#section-intro" data-move-to="intro" data-menuanchor="intro">Black Hole Explorer</a>
+      <a class="top-nav__brand" href="#section-intro" data-move-to="intro" data-menuanchor="intro">
+        <img class="top-nav__logo" src="assets/jets.svg" alt="Black Hole Explorer 标志">
+        <span class="top-nav__brand-text">Black Hole Explorer</span>
+      </a>
       <ul class="top-nav__links" id="top-nav-menu">
         <li><a href="#section-overview" data-move-to="overview" data-menuanchor="overview">概述</a></li>
         <li><a href="#section-formation" data-move-to="formation" data-menuanchor="formation">形成</a></li>
@@ -63,37 +66,73 @@
 
     <section id="section-formation" class="section section--dark" data-anchor="formation">
       <div class="container">
-        <h2>形成与演化关键节点</h2>
-        <div class="timeline">
+        <div class="section-heading">
+          <p class="section-heading__eyebrow">历史脉络</p>
+          <h2>形成与演化关键节点</h2>
+          <p class="section-heading__lead">
+            从“暗星”想象到黑洞照片，人类认识黑洞的旅程历经三个世纪。以下时间线梳理出推动黑洞概念成型的里程碑时刻。
+          </p>
+        </div>
+        <div class="timeline timeline--milestones">
           <article class="timeline__item">
-            <span class="timeline__year">18 世纪</span>
-            <h3>“暗星”设想的萌芽</h3>
-            <p>米切尔与拉普拉斯提出逃逸速度超过光速的天体概念，为后来的黑洞思想奠定基础。</p>
+            <div class="timeline__card">
+              <header class="timeline__header">
+                <span class="timeline__year">18 世纪</span>
+                <span class="timeline__tag">概念萌芽</span>
+              </header>
+              <h3>“暗星”设想的萌芽</h3>
+              <p>米切尔与拉普拉斯提出逃逸速度超过光速的天体，初次描绘出“光无法逃脱”的极端星体景象。</p>
+            </div>
           </article>
           <article class="timeline__item">
-            <span class="timeline__year">1916</span>
-            <h3>史瓦西解诞生</h3>
-            <p>卡尔·史瓦西首次求得球对称真空解，让黑洞从设想走向严密的理论框架。</p>
+            <div class="timeline__card">
+              <header class="timeline__header">
+                <span class="timeline__year">1916</span>
+                <span class="timeline__tag">理论突破</span>
+              </header>
+              <h3>史瓦西解诞生</h3>
+              <p>卡尔·史瓦西在广义相对论框架中写下首个精确解，黑洞不再只是猜想，而拥有严谨的数学描述。</p>
+            </div>
           </article>
           <article class="timeline__item">
-            <span class="timeline__year">1930s</span>
-            <h3>坍缩与奇点的预测</h3>
-            <p>钱德拉塞卡计算白矮星质量上限，奥本海默与西奈德模型指出大质量恒星不可避免形成黑洞。</p>
+            <div class="timeline__card">
+              <header class="timeline__header">
+                <span class="timeline__year">1930s</span>
+                <span class="timeline__tag">坍缩预言</span>
+              </header>
+              <h3>坍缩与奇点的预测</h3>
+              <p>钱德拉塞卡提出白矮星质量上限，奥本海默团队意识到，大质量恒星会不可逆地坍缩成黑洞。</p>
+            </div>
           </article>
           <article class="timeline__item">
-            <span class="timeline__year">1960s</span>
-            <h3>“黑洞”一词与数学定理</h3>
-            <p>约翰·惠勒推广“黑洞”命名，纽曼、彭罗斯等人证明事件视界的稳定性与奇点存在。</p>
+            <div class="timeline__card">
+              <header class="timeline__header">
+                <span class="timeline__year">1960s</span>
+                <span class="timeline__tag">命名定型</span>
+              </header>
+              <h3>“黑洞”一词与数学定理</h3>
+              <p>约翰·惠勒推广“黑洞”命名，纽曼与彭罗斯等人证明事件视界具有稳定性，奇点不再只是数学玩笑。</p>
+            </div>
           </article>
           <article class="timeline__item">
-            <span class="timeline__year">1970s</span>
-            <h3>霍金辐射与黑洞热力学</h3>
-            <p>霍金与贝肯斯坦发现黑洞拥有熵与温度，引发信息悖论与量子效应的深入研究。</p>
+            <div class="timeline__card">
+              <header class="timeline__header">
+                <span class="timeline__year">1970s</span>
+                <span class="timeline__tag">量子视角</span>
+              </header>
+              <h3>霍金辐射与黑洞热力学</h3>
+              <p>霍金与贝肯斯坦揭示黑洞也有温度与熵，引发信息悖论等深层问题，黑洞成为量子引力的试验场。</p>
+            </div>
           </article>
           <article class="timeline__item">
-            <span class="timeline__year">21 世纪</span>
-            <h3>从引力波到黑洞成像</h3>
-            <p>LIGO 探测引力波，EHT 拍摄黑洞阴影，人类首次直接观测黑洞事件视界投影。</p>
+            <div class="timeline__card">
+              <header class="timeline__header">
+                <span class="timeline__year">21 世纪</span>
+                <span class="timeline__tag">观测时代</span>
+              </header>
+              <h3>从引力波到黑洞成像</h3>
+              <p>LIGO 首次听到黑洞合并的“声音”，EHT 拍下黑洞阴影，人类终于直接捕捉到事件视界的轮廓。</p>
+            </div>
           </article>
         </div>
       </div>
@@ -105,7 +144,7 @@
           <img src="assets/引力透镜示意图.png" alt="引力透镜示意图">
           <h3>引力透镜效应</h3>
           <p>
-            大质量天体弯曲时空，导致经过的光线偏折。当透镜、光源与观测者接近共线时，可见环状或弧形影像。透镜效应不仅验证广义相对论，也帮助推断不可见暗物质的分布。
+            巨大的引力像透镜一样弯折光线，让同一个天体出现多个影像或亮度被放大。借此可以“看到”原本隐藏的星体和暗物质。
           </p>
           <div class="card__cta">
             <span>了解详情 →</span>
@@ -115,7 +154,7 @@
           <img src="assets/多普勒红移示意图.jpg" alt="多普勒红移示意图">
           <h3>多普勒红移</h3>
           <p>
-            吸积盘中的物质高速旋转，接近观测者侧产生蓝移，远离侧产生红移。通过谱线偏移分析，可推算吸积盘结构与黑洞的引力强度。
+            吸积盘里物质高速转圈，朝我们这边来的光会偏蓝，远离的会偏红。颜色的变化能告诉我们转得有多快、离黑洞有多近。
           </p>
           <div class="card__cta">
             <span>了解详情 →</span>
@@ -125,7 +164,7 @@
           <img src="assets/The second black hole.jpg" alt="黑洞示意图">
           <h3>引力红移</h3>
           <p>
-            光子从强引力场逃逸时会损失能量，频率降低、波长拉长。比较不同轨道的谱线偏移量，可检验黑洞附近的引力场强度。
+            光从黑洞附近逃出来时会变得更红、能量更低。我们根据这种“褪色”程度，就能估计黑洞周围引力有多强。
           </p>
           <div class="card__cta">
             <span>了解详情 →</span>
@@ -135,7 +174,7 @@
           <img src="assets/M87 喷流.webp" alt="M87 黑洞喷流成像">
           <h3>相对论性喷流</h3>
           <p>
-            一些黑洞会沿自转轴喷射高速流束，其速度接近光速，携带大量能量，影响星系核心的演化与周围星际介质。
+            有些黑洞会在两极方向喷出细长的能量束，速度几乎追上光。喷流能把周围气体吹得很远，也会点亮整个星系核心。
           </p>
           <div class="card__cta">
             <span>了解详情 →</span>
