@@ -104,38 +104,66 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let isSecondary = false;
+    let isAnimating = false;
 
-    const render = () => {
+    const applyData = (data) => {
       if (!img) {
         return;
       }
-      const data = isSecondary ? secondary : primary;
       if (data.src) {
         img.src = data.src;
       }
-      if (data.alt) {
-        img.alt = data.alt;
+      img.alt = data.alt || '';
+      if (caption) {
+        caption.textContent = data.caption || '';
       }
-      if (caption && data.caption) {
-        caption.textContent = data.caption;
+    };
+
+    applyData(primary);
+    toggleFigure.setAttribute('aria-pressed', 'false');
+
+    const swapImage = (data) => {
+      if (!data || !data.src) {
+        return;
       }
-      toggleFigure.setAttribute('aria-pressed', isSecondary.toString());
+      isAnimating = true;
+      toggleFigure.classList.add('is-transitioning');
+      const loader = new Image();
+      loader.src = data.src;
+      loader.onload = () => {
+        if (!img) {
+          isAnimating = false;
+          toggleFigure.classList.remove('is-transitioning');
+          return;
+        }
+        img.src = loader.src;
+        img.alt = data.alt || '';
+        if (caption) {
+          caption.textContent = data.caption || '';
+        }
+        requestAnimationFrame(() => {
+          toggleFigure.classList.remove('is-transitioning');
+          isAnimating = false;
+        });
+      };
     };
 
     const handleToggle = () => {
+      if (isAnimating) {
+        return;
+      }
       isSecondary = !isSecondary;
-      render();
+      toggleFigure.setAttribute('aria-pressed', isSecondary.toString());
+      swapImage(isSecondary ? secondary : primary);
     };
 
     toggleFigure.addEventListener('click', handleToggle);
     toggleFigure.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
+      if ((event.key === 'Enter' || event.key === ' ') && !isAnimating) {
         event.preventDefault();
         handleToggle();
       }
     });
-
-    render();
   }
 });
 
