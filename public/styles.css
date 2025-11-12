@@ -715,6 +715,31 @@ li {
   text-align: center;
 }
 
+.effect-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+  color: rgba(221, 229, 255, 0.9);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+}
+
+.effect-brand__logo {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(92, 107, 244, 0.45));
+}
+
+.effect-brand__text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .effect-hero h1 {
   margin-bottom: 1rem;
 }
@@ -757,19 +782,10 @@ li {
 
 .effect-footer .container {
   width: min(900px, 90vw);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.effect-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--primary);
-  font-weight: 600;
+  display: grid;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
 }
 
 @media (max-width: 640px) {
