@@ -53,6 +53,9 @@
             黑洞由大质量恒星在生命末期发生引力坍缩形成。其核心被压缩到极小体积，周围围绕着被称为“事件视界”的临界界线。任何物质或辐射一旦越过事件视界，便无法返回。
           </p>
           <p>
+            想要形成黑洞，需要满足几项条件：恒星初始质量需超过约 20 个太阳质量；核聚变耗尽后无法维持向外的压力；坍缩时残余质量超过钱德拉塞卡极限（约 1.4 个太阳质量）（就是白矮星能拥有的最大质量上限）和托尔曼–奥本海默–沃尔科夫极限（TOV极限，中子星能拥有的最大质量上限，约为 3 个太阳质量，最初估计为0.7个太阳质量），中子星与白矮星都无力支撑，自身重力才会把时空挤出黑洞。
+          </p>
+          <p>
             虽然黑洞本身不可见，但科学家可以通过观测吸积盘的高速旋转、喷流辐射以及引力透镜效应，间接捕捉黑洞的存在与特性。
           </p>
         </div>
@@ -182,6 +185,9 @@
     </section>
 
     <section id="section-observations" class="section section--light" data-anchor="observations">
+      <div class="section-particles-wrapper">
+        <canvas class="section-particles" data-section="light" aria-hidden="true"></canvas>
+      </div>
       <div class="container three-column">
         <a class="card" href="effects/gravitational-lensing.html">
           <img src="assets/引力透镜示意图.png" alt="引力透镜示意图">
@@ -237,6 +243,9 @@
     </section>
 
     <section id="section-case-studies" class="section section--accent" data-anchor="case-studies">
+      <div class="section-particles-wrapper">
+        <canvas class="section-particles" data-section="accent" aria-hidden="true"></canvas>
+      </div>
       <div class="container two-column">
         <div>
           <h2>标志性观测案例</h2>
@@ -281,6 +290,9 @@
     </section>
 
     <section id="section-calculator" class="section section--light" data-anchor="calculator">
+      <div class="section-particles-wrapper">
+        <canvas class="section-particles" data-section="light" aria-hidden="true"></canvas>
+      </div>
       <div class="container">
         <h2>计算史瓦西半径</h2>
         <p>输入黑洞的质量（以太阳质量为单位），快速估算事件视界半径。</p>
@@ -298,8 +310,10 @@
     </section>
 
     <section id="section-simulations" class="section section--dark" data-anchor="simulations">
+      <div class="simulation-particles-wrapper">
+        <canvas class="section-particles" data-section="dark" aria-hidden="true"></canvas>
+      </div>
       <div class="container simulation-teaser">
-        <canvas id="simulation-particles" aria-hidden="true"></canvas>
         <div class="simulation-teaser__intro">
           <p class="section-heading__eyebrow">交互体验</p>
           <h2>计算机模拟展示</h2>
@@ -315,6 +329,9 @@
       </div>
     </section>
     <section id="section-footer" class="section section--dark fp-auto-height" data-anchor="footer">
+      <div class="section-particles-wrapper">
+        <canvas class="section-particles" data-section="dark" aria-hidden="true"></canvas>
+      </div>
       <footer class="footer">
         <div class="container footer__content">
           <p>© <span id="current-year"></span> Black Hole Explorer. 基于 Cloudflare Pages 部署。</p>

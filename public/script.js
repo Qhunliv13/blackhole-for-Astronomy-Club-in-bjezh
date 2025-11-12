@@ -334,14 +334,58 @@ document.addEventListener('DOMContentLoaded', () => {
     linkColor: 'rgba(110, 140, 255, {alpha})',
   });
 
-  initParticleField(document.querySelector('#simulation-particles'), {
-    density: 0.0003,
-    maxSpeed: 0.35,
-    connectionDistance: 140,
-    sizeRange: [1.1, 2.3],
-    particleColor: 'rgba(170, 190, 255, 0.75)',
-    glowColor: 'rgba(116, 138, 255, 0.45)',
-    linkColor: 'rgba(146, 168, 255, {alpha})',
+  const sectionParticles = document.querySelectorAll('.section-particles');
+  sectionParticles.forEach((canvas) => {
+    const theme = canvas.dataset.section || 'dark';
+    const isDark = theme === 'dark';
+    initParticleField(canvas, {
+      density: 0.0004,
+      maxSpeed: 0.32,
+      connectionDistance: isDark ? 150 : 120,
+      sizeRange: [0.9, 2],
+      particleColor: (() => {
+        if (theme === 'light') {
+          return 'rgba(30, 34, 56, 0.35)';
+        }
+        if (theme === 'accent') {
+          return 'rgba(230, 206, 255, 0.75)';
+        }
+        return 'rgba(174, 192, 255, 0.8)';
+      })(),
+      glowColor: (() => {
+        if (theme === 'light') {
+          return 'rgba(98, 110, 160, 0.25)';
+        }
+        if (theme === 'accent') {
+          return 'rgba(255, 160, 210, 0.48)';
+        }
+        return 'rgba(124, 148, 255, 0.5)';
+      })(),
+      linkColor: (() => {
+        if (theme === 'light') {
+          return 'rgba(64, 72, 112, {alpha})';
+        }
+        if (theme === 'accent') {
+          return 'rgba(255, 184, 226, {alpha})';
+        }
+        return 'rgba(146, 168, 255, {alpha})';
+      })(),
+    });
+  });
+
+  const effectCanvases = document.querySelectorAll('.effect-particles');
+  effectCanvases.forEach((canvas) => {
+    const theme = canvas.dataset.section || 'dark';
+    const isDark = theme === 'dark';
+    initParticleField(canvas, {
+      density: isDark ? 0.0005 : 0.00035,
+      maxSpeed: isDark ? 0.28 : 0.23,
+      connectionDistance: isDark ? 140 : 110,
+      sizeRange: isDark ? [0.9, 1.8] : [0.7, 1.6],
+      particleColor: isDark ? 'rgba(190, 206, 255, 0.75)' : 'rgba(35, 45, 78, 0.35)',
+      glowColor: isDark ? 'rgba(128, 152, 255, 0.45)' : 'rgba(98, 112, 168, 0.25)',
+      linkColor: isDark ? 'rgba(154, 180, 255, {alpha})' : 'rgba(74, 86, 130, {alpha})',
+    });
   });
 });
 

@@ -1,3 +1,7 @@
+.effect-page {
+  position: relative;
+}
+
 :root {
   color-scheme: dark light;
   --font-family: 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -71,8 +75,12 @@ a:focus {
 }
 
 .container {
-  width: var(--container-width);
+  max-width: var(--container-width);
+  width: 100%;
   margin: 0 auto;
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+  position: relative;
 }
 
 .top-nav {
@@ -189,11 +197,7 @@ a:focus {
 
 .section--accent::before,
 .section--accent::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.35;
+  pointer-events: none;
 }
 
 .section--accent::before {
@@ -773,6 +777,33 @@ li {
   height: 100%;
   pointer-events: none;
   opacity: 0.85;
+}
+
+.simulation-particles-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.effect-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.65;
+  z-index: 0;
+}
+
+.effect-content {
+  position: relative;
+}
+
+.effect-hero {
+  position: relative;
+  z-index: 1;
 }
 
 .simulation-teaser__intro {
