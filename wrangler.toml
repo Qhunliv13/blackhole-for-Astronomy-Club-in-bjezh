@@ -6,3 +6,8 @@ compatibility_date = "2025-11-12"
 directory = "./public"
 binding = "ASSETS"
 
+[durable_objects]
+bindings = [
+  { name = "RateLimiterDurableObject", class_name = "RateLimiterDurableObject" }
+]
+
