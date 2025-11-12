@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const theme = canvas.dataset.section || 'dark';
     const isDark = theme === 'dark';
     initParticleField(canvas, {
-      density: 0.00004,
+      density: 0.00008,
       maxSpeed: 0.32,
       connectionDistance: isDark ? 150 : 120,
       sizeRange: [0.9, 2],
@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const theme = canvas.dataset.section || 'dark';
     const isDark = theme === 'dark';
     initParticleField(canvas, {
-      density: isDark ? 0.00005 : 0.000035,
+      density: isDark ? 0.0001 : 0.00007,
       maxSpeed: isDark ? 0.28 : 0.23,
       connectionDistance: isDark ? 140 : 110,
       sizeRange: isDark ? [0.9, 1.8] : [0.7, 1.6],
