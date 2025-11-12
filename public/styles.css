@@ -534,40 +534,92 @@ li {
 }
 
 .card {
-  display: block;
   background: #ffffff;
   border-radius: 16px;
-  overflow: hidden;
   border: 1px solid var(--border-dark);
   box-shadow: 0 18px 40px -24px rgba(16, 26, 44, 0.4);
   color: var(--text-dark);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -24px rgba(16, 26, 44, 0.46);
+}
+
+.card__body {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card img {
+  width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
 
-.card h3,
-.card p {
-  padding: 0 1.5rem;
+.card__content {
+  padding: 0 1.5rem 1.6rem;
+  display: grid;
+  gap: 0.85rem;
+  flex: 1;
 }
 
-.card p:last-child {
-  padding-bottom: 1.8rem;
+.card__content h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+.card__content p {
+  margin: 0;
+  color: rgba(30, 38, 72, 0.85);
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0 1.5rem 1.6rem;
+}
+
+.card__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--primary);
+  color: var(--text-light);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.card__button:hover,
+.card__button:focus {
+  transform: translateY(-2px);
+  background: #6374ff;
+  box-shadow: 0 14px 32px -20px rgba(60, 74, 160, 0.65);
 }
 
 .card__link {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 0.35rem;
   font-size: 0.85rem;
   color: rgba(62, 80, 180, 0.85);
-  margin: 0 1.5rem 1.2rem;
   font-weight: 600;
+  text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
@@ -575,26 +627,6 @@ li {
 .card__link:focus {
   color: #2330a8;
   transform: translateX(4px);
-}
-
-.card:focus,
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px -24px rgba(16, 26, 44, 0.46);
-}
-
-.card__cta {
-  padding: 0 1.5rem 1.8rem;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card__cta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 600;
-  color: var(--primary);
 }
 
 .section--accent .two-column {
