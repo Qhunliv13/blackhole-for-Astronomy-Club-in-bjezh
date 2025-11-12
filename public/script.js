@@ -165,5 +165,132 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  const timelineItems = document.querySelectorAll('.timeline__item');
+  if (timelineItems.length) {
+    const reveal = (entry, observer) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => reveal(entry, obs));
+        },
+        {
+          threshold: 0.25,
+          rootMargin: '0px 0px -10% 0px',
+        },
+      );
+
+      timelineItems.forEach((item) => observer.observe(item));
+    } else {
+      timelineItems.forEach((item) => item.classList.add('is-visible'));
+    }
+  }
+
+  const particleCanvas = document.querySelector('#simulation-particles');
+  if (particleCanvas) {
+    const ctx = particleCanvas.getContext('2d');
+    const particles = [];
+    const config = {
+      count: 80,
+      maxSpeed: 0.35,
+      connectionDistance: 120,
+      baseSize: 1.1,
+    };
+
+    const random = (min, max) => Math.random() * (max - min) + min;
+
+    const createParticle = () => ({
+      x: random(0, particleCanvas.width),
+      y: random(0, particleCanvas.height),
+      vx: random(-config.maxSpeed, config.maxSpeed),
+      vy: random(-config.maxSpeed, config.maxSpeed),
+      size: random(config.baseSize, config.baseSize + 1.1),
+    });
+
+    const resizeCanvas = () => {
+      const parent = particleCanvas.parentElement;
+      if (!parent) {
+        return;
+      }
+      const rect = parent.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      particleCanvas.width = rect.width * dpr;
+      particleCanvas.height = rect.height * dpr;
+      particleCanvas.style.width = `${rect.width}px`;
+      particleCanvas.style.height = `${rect.height}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      particles.length = 0;
+      const targetCount = Math.floor(config.count * (rect.width / 800 + rect.height / 800) / 2);
+      for (let i = 0; i < Math.max(40, targetCount); i += 1) {
+        particles.push(createParticle());
+      }
+    };
+
+    const draw = () => {
+      const width = particleCanvas.clientWidth;
+      const height = particleCanvas.clientHeight;
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i += 1) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) {
+          p.vx *= -1;
+        }
+        if (p.y < 0 || p.y > height) {
+          p.vy *= -1;
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(160, 185, 255, 0.75)';
+        ctx.shadowColor = 'rgba(96, 123, 255, 0.45)';
+        ctx.shadowBlur = 6;
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.shadowBlur = 0;
+      for (let i = 0; i < particles.length; i += 1) {
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const a = particles[i];
+          const b = particles[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < config.connectionDistance) {
+            const alpha = 1 - distance / config.connectionDistance;
+            ctx.strokeStyle = `rgba(118, 142, 255, ${alpha * 0.4})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    };
+
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resizeCanvas, 100);
+    };
+
+    window.addEventListener('resize', handleResize);
+    resizeCanvas();
+    requestAnimationFrame(draw);
+  }
 });
 

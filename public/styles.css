@@ -351,6 +351,14 @@ li {
   padding-left: clamp(3.5rem, 6vw, 4rem);
   display: flex;
   justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline__item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .timeline__item::before {
@@ -363,6 +371,12 @@ li {
   border-radius: 999px;
   background: #5c6bf4;
   box-shadow: 0 0 0 6px rgba(92, 107, 244, 0.18);
+  transform: scale(0.8);
+  transition: transform 0.6s ease;
+}
+
+.timeline__item.is-visible::before {
+  transform: scale(1);
 }
 
 .timeline__card {
@@ -475,16 +489,18 @@ li {
   }
 
   .timeline__item:nth-child(odd) .timeline__card {
+    margin-left: 0;
     margin-right: auto;
-    text-align: right;
-    align-items: flex-end;
-    background: radial-gradient(circle at top left, rgba(92, 107, 244, 0.16), rgba(12, 18, 35, 0.82));
+    text-align: left;
+    align-items: flex-start;
+    background: radial-gradient(circle at top right, rgba(92, 107, 244, 0.16), rgba(12, 18, 35, 0.82));
   }
 
   .timeline__item:nth-child(even) .timeline__card {
     margin-left: auto;
-    text-align: left;
-    align-items: flex-start;
+    text-align: right;
+    align-items: flex-end;
+    background: radial-gradient(circle at top left, rgba(92, 107, 244, 0.16), rgba(12, 18, 35, 0.82));
   }
 }
 
@@ -599,6 +615,7 @@ li {
 
 .gallery.is-transitioning img {
   opacity: 0;
+  transform: scale(0.96);
 }
 
 .gallery figcaption {
@@ -700,6 +717,7 @@ li {
   justify-content: center;
   padding: clamp(3rem, 6vw, 5rem) 0;
   overflow: hidden;
+  background: radial-gradient(circle at top, rgba(32, 45, 96, 0.35), rgba(5, 8, 18, 0.95));
 }
 
 .simulation-teaser::before,
@@ -713,45 +731,63 @@ li {
 }
 
 .simulation-teaser::before {
-  width: min(65vw, 520px);
-  height: min(65vw, 520px);
-  background: radial-gradient(circle at center, rgba(92, 107, 244, 0.35), transparent 70%);
+  width: min(65vw, 540px);
+  height: min(65vw, 540px);
+  background: radial-gradient(circle at center, rgba(92, 107, 244, 0.4), transparent 70%);
   top: -35%;
-  left: -15%;
+  left: -18%;
 }
 
 .simulation-teaser::after {
-  width: min(60vw, 460px);
-  height: min(60vw, 460px);
-  background: radial-gradient(circle at center, rgba(14, 116, 218, 0.35), transparent 68%);
-  bottom: -40%;
-  right: -20%;
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(236, 143, 255, 0.28), transparent 70%),
+    radial-gradient(circle at 70% 75%, rgba(14, 116, 218, 0.38), transparent 68%);
+  bottom: -46%;
+  right: -24%;
   animation-delay: 4s;
+}
+
+.simulation-teaser #simulation-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.85;
 }
 
 .simulation-teaser__intro {
   position: relative;
+  z-index: 1;
   display: grid;
-  gap: 1rem;
+  gap: clamp(1rem, 2vw, 1.4rem);
   text-align: center;
   color: rgba(230, 236, 255, 0.9);
   width: min(640px, 100%);
-  background: rgba(12, 18, 35, 0.6);
-  border: 1px solid rgba(120, 143, 255, 0.18);
-  border-radius: 24px;
-  padding: clamp(2rem, 4vw, 2.8rem);
-  box-shadow: 0 32px 80px -42px rgba(16, 28, 68, 0.75);
-  backdrop-filter: blur(18px);
+  background: rgba(12, 18, 35, 0.55);
+  border: 1px solid rgba(120, 143, 255, 0.25);
+  border-radius: 28px;
+  padding: clamp(2.2rem, 4.4vw, 3.2rem);
+  box-shadow: 0 38px 96px -48px rgba(18, 26, 64, 0.8);
+  backdrop-filter: blur(22px);
+}
+
+.simulation-teaser__intro::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(146, 169, 255, 0.16);
+  pointer-events: none;
+  background: linear-gradient(140deg, rgba(132, 146, 255, 0.16), transparent 60%);
+  mask: linear-gradient(#fff, #fff) padding-box, linear-gradient(#fff, #fff);
+  mask-composite: exclude;
 }
 
 .simulation-teaser__intro h2 {
   margin: 0;
-}
-
-.simulation-teaser__lead {
-  margin: 0;
-  font-size: clamp(1rem, 1.8vw, 1.1rem);
-  color: rgba(222, 231, 255, 0.82);
 }
 
 .simulation-teaser__link {
