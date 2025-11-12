@@ -323,23 +323,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  initParticleField(document.querySelector('#global-particles'), {
-    fullscreen: true,
-    density: 0.00009,
-    maxSpeed: 0.22,
-    connectionDistance: 200,
-    sizeRange: [1, 2.4],
-    particleColor: 'rgba(130, 160, 255, 0.6)',
-    glowColor: 'rgba(90, 118, 255, 0.35)',
-    linkColor: 'rgba(110, 140, 255, {alpha})',
-  });
-
   const sectionParticles = document.querySelectorAll('.section-particles');
   sectionParticles.forEach((canvas) => {
     const theme = canvas.dataset.section || 'dark';
     const isDark = theme === 'dark';
     initParticleField(canvas, {
-      density: 0.0004,
+      density: 0.00004,
       maxSpeed: 0.32,
       connectionDistance: isDark ? 150 : 120,
       sizeRange: [0.9, 2],
@@ -378,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const theme = canvas.dataset.section || 'dark';
     const isDark = theme === 'dark';
     initParticleField(canvas, {
-      density: isDark ? 0.0005 : 0.00035,
+      density: isDark ? 0.00005 : 0.000035,
       maxSpeed: isDark ? 0.28 : 0.23,
       connectionDistance: isDark ? 140 : 110,
       sizeRange: isDark ? [0.9, 1.8] : [0.7, 1.6],

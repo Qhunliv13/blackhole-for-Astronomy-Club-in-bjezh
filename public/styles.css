@@ -33,27 +33,10 @@ body {
   color: var(--text-light);
   line-height: 1.65;
   letter-spacing: 0.01em;
-  position: relative;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-#global-particles {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.65;
-}
-
-#fullpage,
-.section {
-  position: relative;
-  z-index: 1;
 }
 
 img {
@@ -172,6 +155,7 @@ a:focus {
 
 .section {
   padding: clamp(3rem, 5vw, 5.5rem) 0;
+  position: relative;
 }
 
 #fullpage .section {
@@ -770,7 +754,7 @@ li {
   animation-delay: 4s;
 }
 
-.simulation-teaser #simulation-particles {
+.simulation-particles-wrapper .section-particles {
   position: absolute;
   inset: 0;
   width: 100%;
