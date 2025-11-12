@@ -146,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
           isAnimating = false;
         });
       };
+      if (loader.complete) {
+        loader.onload?.call(loader);
+      }
     };
 
     const handleToggle = () => {
@@ -192,51 +195,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const particleCanvas = document.querySelector('#simulation-particles');
-  if (particleCanvas) {
-    const ctx = particleCanvas.getContext('2d');
+  const initParticleField = (canvas, options = {}) => {
+    if (!canvas) {
+      return;
+    }
+
+    const ctx = canvas.getContext('2d');
+    const {
+      fullscreen = false,
+      density = 0.00012,
+      maxSpeed = 0.3,
+      connectionDistance = 160,
+      sizeRange = [1, 2],
+      particleColor = 'rgba(160, 185, 255, 0.65)',
+      glowColor = 'rgba(96, 123, 255, 0.35)',
+      linkColor = 'rgba(118, 142, 255, {alpha})',
+    } = options;
+
     const particles = [];
-    const config = {
-      count: 80,
-      maxSpeed: 0.35,
-      connectionDistance: 120,
-      baseSize: 1.1,
-    };
+    let width = 0;
+    let height = 0;
+    let animationFrame;
 
     const random = (min, max) => Math.random() * (max - min) + min;
 
     const createParticle = () => ({
-      x: random(0, particleCanvas.width),
-      y: random(0, particleCanvas.height),
-      vx: random(-config.maxSpeed, config.maxSpeed),
-      vy: random(-config.maxSpeed, config.maxSpeed),
-      size: random(config.baseSize, config.baseSize + 1.1),
+      x: random(0, width),
+      y: random(0, height),
+      vx: random(-maxSpeed, maxSpeed),
+      vy: random(-maxSpeed, maxSpeed),
+      size: random(sizeRange[0], sizeRange[1]),
     });
 
-    const resizeCanvas = () => {
-      const parent = particleCanvas.parentElement;
-      if (!parent) {
-        return;
-      }
-      const rect = parent.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      particleCanvas.width = rect.width * dpr;
-      particleCanvas.height = rect.height * dpr;
-      particleCanvas.style.width = `${rect.width}px`;
-      particleCanvas.style.height = `${rect.height}px`;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-
-      particles.length = 0;
-      const targetCount = Math.floor(config.count * (rect.width / 800 + rect.height / 800) / 2);
-      for (let i = 0; i < Math.max(40, targetCount); i += 1) {
+    const updateParticleCount = () => {
+      const target = Math.max(30, Math.floor(width * height * density));
+      particles.length = Math.min(particles.length, target);
+      while (particles.length < target) {
         particles.push(createParticle());
       }
     };
 
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = fullscreen
+        ? { width: window.innerWidth, height: window.innerHeight }
+        : canvas.parentElement?.getBoundingClientRect() || { width: 0, height: 0 };
+
+      width = rect.width;
+      height = rect.height;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      particles.length = 0;
+      updateParticleCount();
+    };
+
     const draw = () => {
-      const width = particleCanvas.clientWidth;
-      const height = particleCanvas.clientHeight;
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i += 1) {
@@ -247,19 +267,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (p.x < 0 || p.x > width) {
           p.vx *= -1;
         }
+
         if (p.y < 0 || p.y > height) {
           p.vy *= -1;
         }
 
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(160, 185, 255, 0.75)';
-        ctx.shadowColor = 'rgba(96, 123, 255, 0.45)';
-        ctx.shadowBlur = 6;
+        ctx.fillStyle = particleColor;
+        ctx.shadowColor = glowColor;
+        ctx.shadowBlur = 8;
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       }
 
       ctx.shadowBlur = 0;
+
       for (let i = 0; i < particles.length; i += 1) {
         for (let j = i + 1; j < particles.length; j += 1) {
           const a = particles[i];
@@ -267,9 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < config.connectionDistance) {
-            const alpha = 1 - distance / config.connectionDistance;
-            ctx.strokeStyle = `rgba(118, 142, 255, ${alpha * 0.4})`;
+          if (distance < connectionDistance) {
+            const alpha = 1 - distance / connectionDistance;
+            ctx.strokeStyle = linkColor.replace('{alpha}', (alpha * 0.5).toFixed(3));
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -279,18 +301,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      requestAnimationFrame(draw);
+      animationFrame = requestAnimationFrame(draw);
     };
 
     let resizeTimeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(resizeCanvas, 100);
+      resizeTimeout = setTimeout(() => {
+        resizeCanvas();
+        updateParticleCount();
+      }, 120);
     };
 
-    window.addEventListener('resize', handleResize);
     resizeCanvas();
-    requestAnimationFrame(draw);
-  }
+    draw();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', handleResize);
+    };
+  };
+
+  initParticleField(document.querySelector('#global-particles'), {
+    fullscreen: true,
+    density: 0.00009,
+    maxSpeed: 0.22,
+    connectionDistance: 200,
+    sizeRange: [1, 2.4],
+    particleColor: 'rgba(130, 160, 255, 0.6)',
+    glowColor: 'rgba(90, 118, 255, 0.35)',
+    linkColor: 'rgba(110, 140, 255, {alpha})',
+  });
+
+  initParticleField(document.querySelector('#simulation-particles'), {
+    density: 0.0003,
+    maxSpeed: 0.35,
+    connectionDistance: 140,
+    sizeRange: [1.1, 2.3],
+    particleColor: 'rgba(170, 190, 255, 0.75)',
+    glowColor: 'rgba(116, 138, 255, 0.45)',
+    linkColor: 'rgba(146, 168, 255, {alpha})',
+  });
 });
 
