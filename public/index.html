@@ -1,198 +1,219 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="home-page-root">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <title>Black Hole Explorer | 穿越引力深渊的沉浸体验</title>
-  <meta name="description" content="沉浸式了解黑洞的形成、观测与最新突破，体验平滑切换的宇宙探索主页。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>探索黑洞 | Black Hole Explorer</title>
+  <meta name="description" content="从史瓦西半径到引力波，全面了解黑洞的形成、观测与重要里程碑。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullpage.js@4/dist/fullpage.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="home-page antialiased">
-  <nav class="home-nav" id="home-nav">
-    <div class="home-nav__inner">
-      <a href="#home" class="home-nav__brand" data-nav-target="home">
-        <img src="assets/The first black hole.png" alt="Black Hole Explorer" class="home-nav__logo">
-        <span>Black Hole Explorer</span>
-      </a>
-      <button class="home-nav__toggle" type="button" aria-expanded="false" aria-controls="home-nav-links">
-        <span class="sr-only">展开导航</span>
-        <i class="uil uil-bars"></i>
-      </button>
-      <div class="home-nav__links" id="home-nav-links">
-        <a href="#home" data-nav-target="home" class="is-active">首页</a>
-        <a href="#chronicle" data-nav-target="chronicle">时空脉络</a>
-        <a href="#highlights" data-nav-target="highlights">探索亮点</a>
-        <a href="#observatory" data-nav-target="observatory">观测窗口</a>
-        <a href="#join" data-nav-target="join">加入旅程</a>
-      </div>
+<body>
+  <nav class="top-nav" id="top-nav">
+    <div class="container top-nav__content">
+      <a class="top-nav__brand" href="#intro" data-move-to="intro" data-menuanchor="intro">Black Hole Explorer</a>
+      <ul class="top-nav__links" id="top-nav-menu">
+        <li><a href="#overview" data-move-to="overview" data-menuanchor="overview">概述</a></li>
+        <li><a href="#formation" data-move-to="formation" data-menuanchor="formation">形成</a></li>
+        <li><a href="#observations" data-move-to="observations" data-menuanchor="observations">观测</a></li>
+        <li><a href="#case-studies" data-move-to="case-studies" data-menuanchor="case-studies">案例</a></li>
+        <li><a href="#calculator" data-move-to="calculator" data-menuanchor="calculator">工具</a></li>
+        <li><a href="#faq" data-move-to="faq" data-menuanchor="faq">常见问题</a></li>
+      </ul>
     </div>
   </nav>
 
-  <div class="swiper home-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" data-page="home">
-        <section class="home-section hero-section" id="home">
-          <div class="hero-section__content">
-            <div class="hero-section__titles">
-              <span class="hero-section__eyebrow">Black Hole Explorer</span>
-              <h1 class="hero-section__title">
-                <span class="hero-section__title-line hero-section__title-top">穿越引力深渊</span>
-                <span class="hero-section__title-line hero-section__title-bottom">探索宇宙暗面</span>
-              </h1>
+  <main id="fullpage">
+    <section id="intro" class="section hero" data-anchor="intro">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">Black Hole Explorer</p>
+        <h1>走近宇宙深渊，探索黑洞奥秘</h1>
+        <p class="hero__lead">
+          黑洞是宇宙中最极端的天体之一，它的引力强大到光都无法逃逸。通过理论与观测的结合，人类正逐步揭开黑洞与宇宙演化之间的深刻联系。
+        </p>
+        <a class="hero__cta" href="#formation" data-move-to="formation">开始探索</a>
+      </div>
+    </section>
+
+    <section id="overview" class="section section--light" data-anchor="overview">
+      <div class="container two-column">
+        <div>
+          <h2>黑洞是什么？</h2>
+          <p>
+            黑洞由大质量恒星在生命末期发生引力坍缩形成。其核心被压缩到极小体积，周围围绕着被称为“事件视界”的临界界线。任何物质或辐射一旦越过事件视界，便无法返回。
+          </p>
+          <p>
+            虽然黑洞本身不可见，但科学家可以通过观测吸积盘的高速旋转、喷流辐射以及引力透镜效应，间接捕捉黑洞的存在与特性。
+          </p>
+        </div>
+        <aside class="fact-card">
+          <h3>史瓦西半径快速计算</h3>
+          <p>对于非旋转黑洞，其事件视界的大小可通过史瓦西半径公式估算：</p>
+          <p class="formula">R<sub>s</sub> ≈ 2.95 km × (M / M<sub>☉</sub>)</p>
+          <p>
+            该公式源于广义相对论中的史瓦西解：当度规中的项 <em>1 - 2GM/(rc²)</em> 等于 0 时，即定义事件视界的位置。
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="formation" class="section section--dark" data-anchor="formation">
+      <div class="container">
+        <h2>形成与演化关键节点</h2>
+        <div class="timeline">
+          <article class="timeline__item">
+            <span class="timeline__year">18 世纪</span>
+            <h3>“暗星”设想的萌芽</h3>
+            <p>米切尔与拉普拉斯提出逃逸速度超过光速的天体概念，为后来的黑洞思想奠定基础。</p>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__year">1916</span>
+            <h3>史瓦西解诞生</h3>
+            <p>卡尔·史瓦西首次求得球对称真空解，让黑洞从设想走向严密的理论框架。</p>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__year">1930s</span>
+            <h3>坍缩与奇点的预测</h3>
+            <p>钱德拉塞卡计算白矮星质量上限，奥本海默与西奈德模型指出大质量恒星不可避免形成黑洞。</p>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__year">1960s</span>
+            <h3>“黑洞”一词与数学定理</h3>
+            <p>约翰·惠勒推广“黑洞”命名，纽曼、彭罗斯等人证明事件视界的稳定性与奇点存在。</p>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__year">1970s</span>
+            <h3>霍金辐射与黑洞热力学</h3>
+            <p>霍金与贝肯斯坦发现黑洞拥有熵与温度，引发信息悖论与量子效应的深入研究。</p>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__year">21 世纪</span>
+            <h3>从引力波到黑洞成像</h3>
+            <p>LIGO 探测引力波，EHT 拍摄黑洞阴影，人类首次直接观测黑洞事件视界投影。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="observations" class="section section--light" data-anchor="observations">
+      <div class="container three-column">
+        <article class="card">
+          <img src="assets/引力透镜示意图.png" alt="引力透镜示意图">
+          <h3>引力透镜效应</h3>
+          <p>
+            大质量天体弯曲时空，导致经过的光线偏折。当透镜、光源与观测者接近共线时，可见环状或弧形影像。透镜效应不仅验证广义相对论，也帮助推断不可见暗物质的分布。
+          </p>
+        </article>
+        <article class="card">
+          <img src="assets/多普勒红移示意图.jpg" alt="多普勒红移示意图">
+          <h3>多普勒红移</h3>
+          <p>
+            吸积盘中的物质高速旋转，接近观测者侧产生蓝移，远离侧产生红移。通过谱线偏移分析，可推算吸积盘结构与黑洞的引力强度。
+          </p>
+        </article>
+        <article class="card">
+          <img src="assets/The second black hole.jpg" alt="黑洞示意图">
+          <h3>引力红移</h3>
+          <p>
+            光子从强引力场逃逸时会损失能量，频率降低、波长拉长。比较不同轨道的谱线偏移量，可检验黑洞附近的引力场强度。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="case-studies" class="section section--accent" data-anchor="case-studies">
+      <div class="container two-column">
+        <div>
+          <h2>标志性观测案例</h2>
+          <p>
+            2019 年，事件视界望远镜（EHT）公布 M87* 的首张黑洞照片。其质量约为 6.5×10<sup>9</sup> 个太阳，对应的史瓦西半径约为 1.9×10<sup>10</sup> 公里，相当于 126 个天文单位。
+          </p>
+          <p>
+            2022 年，EHT 再次突破，对银河系中心的人马座 A* 成像。虽然质量只有 M87* 的千分之一，但得益于更近的观测距离，研究团队仍成功重构其环状阴影。
+          </p>
+          <div class="case-metric">
+            <div>
+              <p class="case-metric__label">M87*</p>
+              <p class="case-metric__value">6.5×10<sup>9</sup> M<sub>☉</sub></p>
             </div>
-            <p class="hero-section__lead">
-              黑洞是宇宙中最极端的时空实验室。从史瓦西半径到霍金辐射，我们提供沉浸式的可视化与案例剖析，让你在平滑丝滑的交互中理解引力的终极演化。
-            </p>
-            <div class="hero-section__actions">
-              <a href="#chronicle" data-nav-target="chronicle" class="hero-section__primary">继续下滑</a>
-              <a href="https://eventhorizontelescope.org/" target="_blank" rel="noopener" class="hero-section__secondary">
-                <i class="uil uil-external-link-alt"></i>
-                <span>了解 EHT</span>
-              </a>
+            <div>
+              <p class="case-metric__label">Sgr A*</p>
+              <p class="case-metric__value">4.3×10<sup>6</sup> M<sub>☉</sub></p>
             </div>
-            <div class="hero-section__stats">
-              <article>
-                <p class="hero-section__stats-value">2.95 km</p>
-                <p class="hero-section__stats-label">每个太阳质量的史瓦西半径</p>
-              </article>
-              <article>
-                <p class="hero-section__stats-value">2019</p>
-                <p class="hero-section__stats-label">首张黑洞影像问世</p>
-              </article>
-              <article>
-                <p class="hero-section__stats-value">90+</p>
-                <p class="hero-section__stats-label">观测到的引力波事件</p>
-              </article>
-            </div>
-          </div>
-          <div class="scroll-hint" onclick="window.scrollToNextSection()">
-            <i class="uil uil-mouse-alt"></i>
-            <span>向下滚动</span>
-          </div>
-        </section>
-      </div>
-
-      <div class="swiper-slide" data-page="chronicle">
-        <section class="home-section chronicle-section" id="chronicle">
-          <div class="section-heading">
-            <h2>黑洞演化时间线</h2>
-            <p>从“暗星”设想到事件视界成像，跨越三百年的理论突破与观测跃迁。</p>
-          </div>
-          <div class="chronicle-section__timeline">
-            <article>
-              <span class="chronicle-section__year">1783</span>
-              <h3>“暗星”概念提出</h3>
-              <p>米切尔与拉普拉斯推测存在逃逸速度超过光速的天体，黑洞思想首次成型。</p>
-            </article>
-            <article>
-              <span class="chronicle-section__year">1916</span>
-              <h3>史瓦西解奠基</h3>
-              <p>广义相对论的首个精确解诞生，定义了事件视界与黑洞度规。</p>
-            </article>
-            <article>
-              <span class="chronicle-section__year">1974</span>
-              <h3>霍金辐射</h3>
-              <p>黑洞拥有温度与熵的概念被确立，信息悖论随之而来。</p>
-            </article>
-            <article>
-              <span class="chronicle-section__year">2015</span>
-              <h3>引力波首响</h3>
-              <p>LIGO 捕捉到双黑洞并合信号，人类首次“听见”时空涟漪。</p>
-            </article>
-            <article>
-              <span class="chronicle-section__year">2019</span>
-              <h3>M87* 黑洞成像</h3>
-              <p>事件视界望远镜合作组织发布首张黑洞照片，验证广义相对论。</p>
-            </article>
-          </div>
-        </section>
-      </div>
-
-      <div class="swiper-slide" data-page="highlights">
-        <section class="home-section highlights-section" id="highlights">
-          <div class="section-heading">
-            <h2>沉浸式探索亮点</h2>
-            <p>丝滑的滑屏体验串联理论推演、交互计算与实况图像。</p>
-          </div>
-          <div class="highlights-section__grid">
-            <article>
-              <i class="uil uil-scenery"></i>
-              <h3>动态宇宙背景</h3>
-              <p>多层渐变与轻微视差营造星际深度，随时间轻柔漂移。</p>
-            </article>
-            <article>
-              <i class="uil uil-presentation-edit"></i>
-              <h3>可视化教学</h3>
-              <p>引力透镜、霍金辐射等知识点以卡片形式快速理解。</p>
-            </article>
-            <article>
-              <i class="uil uil-calculator"></i>
-              <h3>实时计算工具</h3>
-              <p>史瓦西半径计算器随输入更新，为课堂或科普演示服务。</p>
-            </article>
-            <article>
-              <i class="uil uil-exchange-alt"></i>
-              <h3>顺滑切换</h3>
-              <p>垂直 Swiper 结合 Intersection Observer，让信息逐帧显影。</p>
-            </article>
-          </div>
-        </section>
-      </div>
-
-      <div class="swiper-slide" data-page="observatory">
-        <section class="home-section observatory-section" id="observatory">
-          <div class="section-heading">
-            <h2>观测窗口</h2>
-            <p>三大观测手段带你走近黑洞：光学透镜、光谱偏移与事件视界成像。</p>
-          </div>
-          <div class="observatory-section__cards">
-            <article>
-              <img src="assets/引力透镜示意图.png" alt="引力透镜示意图">
-              <h3>引力透镜效应</h3>
-              <p>大质量黑洞弯曲时空，光线围绕形成爱因斯坦环，是测量质量分布的利器。</p>
-            </article>
-            <article>
-              <img src="assets/多普勒红移示意图.jpg" alt="多普勒红移示意图">
-              <h3>多普勒光谱</h3>
-              <p>吸积盘高速旋转导致谱线蓝移与红移的分裂，为黑洞自旋与质量估算提供线索。</p>
-            </article>
-            <article>
-              <img src="assets/The first black hole.png" alt="黑洞成像">
-              <h3>事件视界成像</h3>
-              <p>EHT 使用全球毫米波阵列合成望远镜，捕捉到 M87* 与 Sgr A* 的阴影结构。</p>
-            </article>
-          </div>
-        </section>
-      </div>
-
-      <div class="swiper-slide" data-page="join">
-        <section class="home-section join-section" id="join">
-          <div class="join-section__card">
-            <i class="uil uil-rocket"></i>
-            <h2>准备好开启引力探险了吗？</h2>
-            <p>加入我们的可视化实验室，下载互动资料包，或与科普社群分享你的宇宙故事。</p>
-            <div class="join-section__actions">
-              <a href="黑洞介绍.txt" download>下载资料</a>
-              <a href="https://www.ligo.org/" target="_blank" rel="noopener">访问 LIGO</a>
-              <a href="mailto:hello@blackhole.explorer">联系我们</a>
+            <div>
+              <p class="case-metric__label">史瓦西半径</p>
+              <p class="case-metric__value">R<sub>s</sub> = 2GM / c²</p>
             </div>
           </div>
-          <footer class="join-section__footer">
-            <p>© <span id="current-year"></span> Black Hole Explorer · 基于 Cloudflare Pages 部署</p>
-          </footer>
-        </section>
+        </div>
+        <figure class="gallery">
+          <img src="assets/The first black hole.png" alt="M87* 黑洞成像">
+          <figcaption>M87*：人类首张黑洞照片，验证广义相对论的直接证据。</figcaption>
+        </figure>
       </div>
-    </div>
-    <div class="swiper-pagination"></div>
-  </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="home.js"></script>
+    <section id="calculator" class="section section--light" data-anchor="calculator">
+      <div class="container">
+        <h2>在线评估史瓦西半径</h2>
+        <p>输入黑洞的质量（以太阳质量为单位），快速估算事件视界半径。</p>
+        <form class="calculator" id="schwarzschild-form">
+          <label for="mass-input">黑洞质量 (M / M<sub>☉</sub>)</label>
+          <input type="number" id="mass-input" min="0" step="0.1" value="10" required>
+          <div class="calculator__result">
+            <p>估算半径：</p>
+            <p id="radius-output" class="calculator__value">29.50 km</p>
+          </div>
+          <button type="submit">计算</button>
+        </form>
+        <p class="calculator__note">公式来源：史瓦西解 R<sub>s</sub> = 2GM / c²，经常数化简得到 2.95 km × (M / M<sub>☉</sub>)。</p>
+      </div>
+    </section>
+
+    <section id="faq" class="section section--dark" data-anchor="faq">
+      <div class="container two-column">
+        <div>
+          <h2>常见问题</h2>
+          <details open>
+            <summary>黑洞如何被观测到？</summary>
+            <p>通过 X 射线双星、类星体和星系核的活动，以及吸积盘的光谱特征与喷流等间接证据，科学家可以确认黑洞的存在。</p>
+          </details>
+          <details>
+            <summary>黑洞会不会吞噬整个宇宙？</summary>
+            <p>黑洞需与物质发生足够近距离的相互作用才会吞噬。多数黑洞周围空间仍然空旷，不会无限制地吞噬宇宙。</p>
+          </details>
+          <details>
+            <summary>霍金辐射意味着黑洞会蒸发吗？</summary>
+            <p>是的，霍金辐射预言黑洞在极长时间尺度上会缓慢失去质量并最终蒸发，但对天体尺度黑洞而言，蒸发时间远超宇宙年龄。</p>
+          </details>
+        </div>
+        <div class="cta-card">
+          <h3>进一步探索</h3>
+          <p>想要深入了解黑洞相关理论和观测前沿？</p>
+          <ul>
+            <li><a href="https://eventhorizontelescope.org/" target="_blank" rel="noopener">Event Horizon Telescope</a></li>
+            <li><a href="https://www.ligo.org/" target="_blank" rel="noopener">LIGO 引力波天文台</a></li>
+            <li><a href="https://www.iau.org/" target="_blank" rel="noopener">国际天文学联合会</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section section--dark fp-auto-height" data-anchor="footer">
+      <footer class="footer">
+        <div class="container footer__content">
+          <p>© <span id="current-year"></span> Black Hole Explorer. 基于 Cloudflare Pages 部署。</p>
+          <a href="#overview" data-move-to="overview">回到顶部</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullpage.js@4/dist/fullpage.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
 
