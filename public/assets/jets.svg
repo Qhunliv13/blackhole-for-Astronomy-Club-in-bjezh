@@ -1,0 +1,29 @@
+<svg width="960" height="640" viewBox="0 0 960 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">黑洞喷流示意图</title>
+  <desc id="desc">抽象表现自旋黑洞及其双向喷流的插图</desc>
+  <defs>
+    <radialGradient id="horizon" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="40%" stop-color="#0a1121"/>
+      <stop offset="80%" stop-color="#02040a"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.9"/>
+    </radialGradient>
+    <linearGradient id="jetPositive" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="jetNegative" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <g opacity="0.75">
+    <path d="M480 40 C515 140 540 220 540 320 C540 420 515 500 480 600" stroke="url(#jetPositive)" stroke-width="96" stroke-linecap="round" fill="none"/>
+    <path d="M480 40 C445 140 420 220 420 320 C420 420 445 500 480 600" stroke="url(#jetNegative)" stroke-width="96" stroke-linecap="round" fill="none" opacity="0.75"/>
+  </g>
+  <circle cx="480" cy="320" r="64" fill="#020617" stroke="#38bdf8" stroke-width="2" opacity="0.65"/>
+  <circle cx="480" cy="320" r="18" fill="#000"/>
+</svg>
+

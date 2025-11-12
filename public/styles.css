@@ -215,9 +215,10 @@ li {
   place-items: center;
   text-align: center;
   padding: clamp(6rem, 12vw, 8rem) 0 clamp(4rem, 8vw, 6rem);
-  background: radial-gradient(circle at bottom, rgba(92, 107, 244, 0.3), transparent 60%),
-              url('https://cloudflare-ipfs.com/ipfs/QmSgRwuQ3t6hwrX6Uhy58y3PaDMxR7gXAwjZs7pG8i8xpm?filename=nebula-bg.jpg') center/cover no-repeat,
-              var(--bg-dark);
+  background:
+    radial-gradient(circle at bottom, rgba(92, 107, 244, 0.3), transparent 60%),
+    linear-gradient(200deg, rgba(15, 18, 36, 0.9), rgba(5, 7, 13, 0.9)),
+    var(--bg-dark);
 }
 
 .hero__overlay {
@@ -324,20 +325,18 @@ li {
 .three-column {
   display: grid;
   gap: 2rem;
-}
-
-@media (min-width: 960px) {
-  .three-column {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .card {
+  display: block;
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-dark);
   box-shadow: 0 18px 40px -24px rgba(16, 26, 44, 0.4);
+  color: var(--text-dark);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card img {
@@ -352,6 +351,26 @@ li {
 
 .card p:last-child {
   padding-bottom: 1.8rem;
+}
+
+.card:focus,
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -24px rgba(16, 26, 44, 0.46);
+}
+
+.card__cta {
+  padding: 0 1.5rem 1.8rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card__cta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .section--accent .two-column {
@@ -512,6 +531,83 @@ li {
   gap: 1rem;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.65);
+}
+
+.effect-page {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.effect-hero {
+  padding: clamp(4rem, 10vw, 6rem) 0 clamp(2rem, 6vw, 3.5rem);
+  background:
+    radial-gradient(circle at center, rgba(92, 107, 244, 0.18), transparent 65%),
+    linear-gradient(200deg, rgba(9, 12, 24, 0.95), rgba(5, 7, 13, 0.92));
+}
+
+.effect-hero .container {
+  width: min(900px, 90vw);
+  text-align: center;
+}
+
+.effect-hero h1 {
+  margin-bottom: 1rem;
+}
+
+.effect-content {
+  flex: 1;
+  padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.effect-content .container {
+  width: min(900px, 90vw);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.effect-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: clamp(1.8rem, 4vw, 2.6rem);
+  box-shadow: 0 24px 56px -32px rgba(15, 18, 36, 0.18);
+  border: 1px solid rgba(12, 18, 35, 0.08);
+}
+
+.effect-card h2 {
+  margin-top: 0;
+}
+
+.effect-card ul {
+  padding-left: 1.2rem;
+  margin: 1rem 0;
+}
+
+.effect-footer {
+  background: #05070d;
+  color: rgba(255, 255, 255, 0.68);
+  padding: 1.5rem 0;
+}
+
+.effect-footer .container {
+  width: min(900px, 90vw);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.effect-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 @media (max-width: 640px) {
