@@ -347,6 +347,8 @@ li {
 .timeline__item {
   position: relative;
   padding-left: clamp(3.5rem, 6vw, 4rem);
+  display: flex;
+  justify-content: flex-start;
 }
 
 .timeline__item::before {
@@ -373,6 +375,7 @@ li {
   backdrop-filter: blur(10px);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  max-width: min(360px, 92%);
 }
 
 .timeline__card::after {
@@ -455,6 +458,8 @@ li {
 
   .timeline__item {
     padding-left: 0;
+    padding-right: 0;
+    display: flex;
   }
 
   .timeline__item::before {
@@ -466,21 +471,26 @@ li {
   .timeline__item:nth-child(odd) {
     grid-column: 1;
     padding-right: clamp(2rem, 6vw, 3.5rem);
+    justify-content: flex-end;
   }
 
   .timeline__item:nth-child(even) {
     grid-column: 2;
     padding-left: clamp(2rem, 6vw, 3.5rem);
+    justify-content: flex-start;
   }
 
   .timeline__item:nth-child(odd) .timeline__card {
     margin-left: auto;
     text-align: right;
     background: radial-gradient(circle at top left, rgba(92, 107, 244, 0.16), rgba(12, 18, 35, 0.82));
+    align-items: flex-end;
   }
 
   .timeline__item:nth-child(even) .timeline__card {
     margin-right: auto;
+    text-align: left;
+    align-items: flex-start;
   }
 }
 
@@ -570,6 +580,19 @@ li {
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.gallery:focus {
+  outline: 2px solid rgba(92, 107, 244, 0.55);
+  outline-offset: 4px;
+}
+
+.gallery:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 52px -32px rgba(22, 34, 66, 0.75);
+  border-color: rgba(146, 164, 255, 0.35);
 }
 
 .gallery img {
@@ -665,18 +688,26 @@ li {
   color: #c2cafb;
 }
 
-.faq details {
-  margin-bottom: 1rem;
-  padding: 1.1rem 1.3rem;
-  border-radius: 14px;
-  background: rgba(12, 18, 35, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: var(--shadow-soft);
+.simulation-teaser {
+  display: flex;
+  justify-content: center;
 }
 
-.faq summary {
-  cursor: pointer;
-  font-weight: 600;
+.simulation-teaser__intro {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  color: rgba(230, 236, 255, 0.88);
+  width: min(640px, 100%);
+}
+
+.simulation-teaser__intro h2 {
+  margin: 0;
+}
+
+.simulation-teaser__intro p {
+  margin: 0;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
 }
 
 .footer {

@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'observations',
         'case-studies',
         'calculator',
-        'faq',
+        'simulations',
         'footer',
       ],
       menu: '#top-nav-menu',
@@ -86,6 +86,56 @@ document.addEventListener('DOMContentLoaded', () => {
         window.fullpage_api.moveTo(target);
       });
     });
+  }
+
+  const toggleFigure = document.querySelector('[data-gallery-toggle]');
+  if (toggleFigure) {
+    const img = toggleFigure.querySelector('img');
+    const caption = toggleFigure.querySelector('figcaption');
+    const primary = {
+      src: toggleFigure.dataset.primarySrc,
+      alt: toggleFigure.dataset.primaryAlt,
+      caption: toggleFigure.dataset.primaryCaption,
+    };
+    const secondary = {
+      src: toggleFigure.dataset.secondarySrc,
+      alt: toggleFigure.dataset.secondaryAlt,
+      caption: toggleFigure.dataset.secondaryCaption,
+    };
+
+    let isSecondary = false;
+
+    const render = () => {
+      if (!img) {
+        return;
+      }
+      const data = isSecondary ? secondary : primary;
+      if (data.src) {
+        img.src = data.src;
+      }
+      if (data.alt) {
+        img.alt = data.alt;
+      }
+      if (caption && data.caption) {
+        caption.textContent = data.caption;
+      }
+      toggleFigure.setAttribute('aria-pressed', isSecondary.toString());
+    };
+
+    const handleToggle = () => {
+      isSecondary = !isSecondary;
+      render();
+    };
+
+    toggleFigure.addEventListener('click', handleToggle);
+    toggleFigure.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        handleToggle();
+      }
+    });
+
+    render();
   }
 });
 

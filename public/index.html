@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>探索黑洞 | Black Hole Explorer</title>
   <meta name="description" content="从史瓦西半径到引力波，全面了解黑洞的形成、观测与重要里程碑。">
+  <link rel="icon" type="image/svg+xml" href="assets/jets.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
         <li><a href="#section-observations" data-move-to="observations" data-menuanchor="observations">观测</a></li>
         <li><a href="#section-case-studies" data-move-to="case-studies" data-menuanchor="case-studies">案例</a></li>
         <li><a href="#section-calculator" data-move-to="calculator" data-menuanchor="calculator">工具</a></li>
-        <li><a href="#section-faq" data-move-to="faq" data-menuanchor="faq">常见问题</a></li>
+        <li><a href="#section-simulations" data-move-to="simulations" data-menuanchor="simulations">模拟预告</a></li>
       </ul>
     </div>
   </nav>
@@ -208,7 +209,19 @@
             </div>
           </div>
         </div>
-        <figure class="gallery">
+        <figure
+          class="gallery"
+          data-gallery-toggle
+          data-primary-src="assets/The first black hole.png"
+          data-primary-alt="M87* 黑洞成像"
+          data-primary-caption="M87*：人类首张黑洞照片，验证广义相对论的直接证据。"
+          data-secondary-src="assets/The second black hole.jpg"
+          data-secondary-alt="人马座 A* 黑洞成像"
+          data-secondary-caption="人马座 A*：银河系中心的超大质量黑洞，EHT 于 2022 年发布成像成果。"
+          tabindex="0"
+          role="button"
+          aria-pressed="false"
+        >
           <img src="assets/The first black hole.png" alt="M87* 黑洞成像">
           <figcaption>M87*：人类首张黑洞照片，验证广义相对论的直接证据。</figcaption>
         </figure>
@@ -217,7 +230,7 @@
 
     <section id="section-calculator" class="section section--light" data-anchor="calculator">
       <div class="container">
-        <h2>在线评估史瓦西半径</h2>
+        <h2>计算史瓦西半径</h2>
         <p>输入黑洞的质量（以太阳质量为单位），快速估算事件视界半径。</p>
         <form class="calculator" id="schwarzschild-form">
           <label for="mass-input">黑洞质量 (M / M<sub>☉</sub>)</label>
@@ -232,31 +245,11 @@
       </div>
     </section>
 
-    <section id="section-faq" class="section section--dark" data-anchor="faq">
-      <div class="container two-column">
-        <div>
-          <h2>常见问题</h2>
-          <details open>
-            <summary>黑洞如何被观测到？</summary>
-            <p>通过 X 射线双星、类星体和星系核的活动，以及吸积盘的光谱特征与喷流等间接证据，科学家可以确认黑洞的存在。</p>
-          </details>
-          <details>
-            <summary>黑洞会不会吞噬整个宇宙？</summary>
-            <p>黑洞需与物质发生足够近距离的相互作用才会吞噬。多数黑洞周围空间仍然空旷，不会无限制地吞噬宇宙。</p>
-          </details>
-          <details>
-            <summary>霍金辐射意味着黑洞会蒸发吗？</summary>
-            <p>是的，霍金辐射预言黑洞在极长时间尺度上会缓慢失去质量并最终蒸发，但对天体尺度黑洞而言，蒸发时间远超宇宙年龄。</p>
-          </details>
-        </div>
-        <div class="cta-card">
-          <h3>进一步探索</h3>
-          <p>想要深入了解黑洞相关理论和观测前沿？</p>
-          <ul>
-            <li><a href="https://eventhorizontelescope.org/" target="_blank" rel="noopener">Event Horizon Telescope</a></li>
-            <li><a href="https://www.ligo.org/" target="_blank" rel="noopener">LIGO 引力波天文台</a></li>
-            <li><a href="https://www.iau.org/" target="_blank" rel="noopener">国际天文学联合会</a></li>
-          </ul>
+    <section id="section-simulations" class="section section--dark" data-anchor="simulations">
+      <div class="container simulation-teaser">
+        <div class="simulation-teaser__intro">
+          <p class="section-heading__eyebrow">交互体验</p>
+          <h2>计算机模拟展示</h2>
         </div>
       </div>
     </section>
