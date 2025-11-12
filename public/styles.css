@@ -542,6 +542,7 @@ li {
   box-shadow: 0 18px 40px -24px rgba(16, 26, 44, 0.4);
   color: var(--text-dark);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
 .card img {
@@ -556,6 +557,24 @@ li {
 
 .card p:last-child {
   padding-bottom: 1.8rem;
+}
+
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: rgba(62, 80, 180, 0.85);
+  margin: 0 1.5rem 1.2rem;
+  font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.card__link:hover,
+.card__link:focus {
+  color: #2330a8;
+  transform: translateX(4px);
 }
 
 .card:focus,
