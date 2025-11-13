@@ -7,9 +7,36 @@ const G = 6.6743e-11;
 const C = 299792458;
 const TON_TO_KG = 1000;
 const rootElement = document.documentElement;
-const baseDesktopScale = 0.5;
-const tabletBreakpoint = 1024;
-const minimumMobileScale = 0.45;
+const BASE_FONT_SIZE = 16;
+const DESIGN_WIDTH = 768;
+const DESIGN_HEIGHT = 960;
+const MIN_MOBILE_SCALE = 0.85;
+
+const applyResponsiveScale = () => {
+  const width = Math.max(window.innerWidth, 320);
+  const height = Math.max(window.innerHeight, 480);
+
+  if (width <= DESIGN_WIDTH) {
+    const widthRatio = width / DESIGN_WIDTH;
+    const heightRatio = height / DESIGN_HEIGHT;
+    const scale = Math.min(1, Math.max(MIN_MOBILE_SCALE, Math.min(widthRatio, heightRatio)));
+    rootElement.style.fontSize = `${(BASE_FONT_SIZE * scale).toFixed(3)}px`;
+    rootElement.style.setProperty('--responsive-scale', scale.toFixed(3));
+  } else {
+    rootElement.style.fontSize = '';
+    rootElement.style.removeProperty('--responsive-scale');
+  }
+};
+
+applyResponsiveScale();
+
+let resizeScaleFrame;
+window.addEventListener('resize', () => {
+  if (resizeScaleFrame) {
+    cancelAnimationFrame(resizeScaleFrame);
+  }
+  resizeScaleFrame = requestAnimationFrame(applyResponsiveScale);
+});
 
 function formatRadiusMeters(value) {
   if (!Number.isFinite(value)) {
@@ -86,28 +113,6 @@ if (form && massInput) {
 if (currentYearEl) {
   currentYearEl.textContent = new Date().getFullYear();
 }
-
-const applyGlobalScale = () => {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  let scale = baseDesktopScale;
-  if (width < tabletBreakpoint) {
-    const widthRatio = width / 768;
-    const heightRatio = height / 960;
-    scale = Math.min(1, Math.max(minimumMobileScale, Math.min(widthRatio, heightRatio)));
-  }
-  rootElement.style.setProperty('--global-scale', scale.toFixed(3));
-};
-
-applyGlobalScale();
-
-let resizeScaleFrame;
-window.addEventListener('resize', () => {
-  if (resizeScaleFrame) {
-    cancelAnimationFrame(resizeScaleFrame);
-  }
-  resizeScaleFrame = requestAnimationFrame(applyGlobalScale);
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const fullpageContainer = document.querySelector('#fullpage');
