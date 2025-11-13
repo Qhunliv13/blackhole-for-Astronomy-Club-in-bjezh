@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'case-studies',
         'calculator',
         'simulations',
+        'repository',
         'footer',
       ],
       menu: '#top-nav-menu',

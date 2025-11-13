@@ -799,8 +799,13 @@ li {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: stretch;
+}
+
+.calculator-samples li {
+  display: flex;
 }
 
 .calculator-samples button {
@@ -810,7 +815,7 @@ li {
   justify-content: center;
   width: 100%;
   border-radius: 12px;
-  padding: 0.75rem 1rem;
+  padding: clamp(0.9rem, 2vw, 1.1rem) clamp(1rem, 3vw, 1.4rem);
   background: rgba(92, 107, 244, 0.18);
   color: #dbe2ff;
   font-size: 0.95rem;
@@ -819,6 +824,9 @@ li {
   cursor: pointer;
   transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
   text-align: center;
+  line-height: 1.4;
+  min-height: 3.4rem;
+  white-space: normal;
 }
 
 .calculator-samples button:hover,
@@ -830,7 +838,7 @@ li {
 
 @media (min-width: 960px) {
   .calculator-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
     align-items: start;
   }
 
@@ -857,6 +865,42 @@ li {
 
 .cta-card a {
   color: #c2cafb;
+}
+
+.repository-callout {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.repository-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 22px;
+  border: 1px solid rgba(32, 44, 78, 0.12);
+  box-shadow: 0 24px 60px -40px rgba(18, 26, 44, 0.35);
+  padding: clamp(1.8rem, 3.6vw, 2.6rem);
+  max-width: 640px;
+  width: 100%;
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  color: #1d2038;
+}
+
+.repository-card__link {
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #3845d7;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.repository-card__link:hover,
+.repository-card__link:focus {
+  transform: translateY(-2px);
+  color: #202ad1;
 }
 
 .simulation-teaser {
