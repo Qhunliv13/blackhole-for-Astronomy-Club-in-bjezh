@@ -798,24 +798,26 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: clamp(1rem, 2.5vw, 1.6rem);
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.8vw, 1rem);
+  max-height: clamp(320px, 45vh, 420px);
+  overflow-y: auto;
+  padding-right: 0.35rem;
 }
 
 .calculator-samples li {
-  display: flex;
+  display: contents;
 }
 
 .calculator-samples button {
   all: unset;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   border-radius: 12px;
-  padding: clamp(0.9rem, 2vw, 1.1rem) clamp(1rem, 3vw, 1.4rem);
+  padding: clamp(0.9rem, 2vw, 1rem) clamp(1rem, 3vw, 1.3rem);
   background: rgba(92, 107, 244, 0.18);
   color: #dbe2ff;
   font-size: 0.95rem;
@@ -823,9 +825,9 @@ li {
   letter-spacing: 0.01em;
   cursor: pointer;
   transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-  text-align: center;
+  text-align: left;
   line-height: 1.4;
-  min-height: 3.4rem;
+  min-height: 3.1rem;
   white-space: normal;
 }
 
@@ -838,13 +840,28 @@ li {
 
 @media (min-width: 960px) {
   .calculator-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 1fr);
     align-items: start;
   }
 
   .calculator-samples {
     margin-top: 0;
+    max-width: 420px;
   }
+}
+
+.calculator-samples ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.calculator-samples ul::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.calculator-samples ul::-webkit-scrollbar-thumb {
+  background: rgba(92, 107, 244, 0.45);
+  border-radius: 12px;
 }
 
 .cta-card {
