@@ -6,6 +6,10 @@ const currentYearEl = document.querySelector('#current-year');
 const G = 6.6743e-11;
 const C = 299792458;
 const TON_TO_KG = 1000;
+const rootElement = document.documentElement;
+const baseDesktopScale = 0.5;
+const tabletBreakpoint = 1024;
+const minimumMobileScale = 0.45;
 
 function formatRadiusMeters(value) {
   if (!Number.isFinite(value)) {
@@ -82,6 +86,28 @@ if (form && massInput) {
 if (currentYearEl) {
   currentYearEl.textContent = new Date().getFullYear();
 }
+
+const applyGlobalScale = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  let scale = baseDesktopScale;
+  if (width < tabletBreakpoint) {
+    const widthRatio = width / 768;
+    const heightRatio = height / 960;
+    scale = Math.min(1, Math.max(minimumMobileScale, Math.min(widthRatio, heightRatio)));
+  }
+  rootElement.style.setProperty('--global-scale', scale.toFixed(3));
+};
+
+applyGlobalScale();
+
+let resizeScaleFrame;
+window.addEventListener('resize', () => {
+  if (resizeScaleFrame) {
+    cancelAnimationFrame(resizeScaleFrame);
+  }
+  resizeScaleFrame = requestAnimationFrame(applyGlobalScale);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const fullpageContainer = document.querySelector('#fullpage');
