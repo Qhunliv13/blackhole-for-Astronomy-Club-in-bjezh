@@ -324,26 +324,32 @@
       <div class="container">
         <h2>计算史瓦西半径</h2>
         <p>输入黑洞的质量（以太阳质量为单位），快速估算事件视界半径。</p>
-        <form class="calculator" id="schwarzschild-form">
-          <label for="mass-input">黑洞质量 (吨)</label>
-          <input type="number" id="mass-input" min="0" step="any" value="1e12" required>
-          <div class="calculator__result">
-            <p>估算半径：</p>
-            <p id="radius-output" class="calculator__value">29.50 km</p>
+        <div class="calculator-layout">
+          <div class="calculator-panel">
+            <form class="calculator" id="schwarzschild-form">
+              <label for="mass-input">黑洞质量 (吨)</label>
+              <input type="number" id="mass-input" min="0" step="any" value="1e12" required>
+              <div class="calculator__result">
+                <p>估算半径：</p>
+                <p id="radius-output" class="calculator__value">29.50 km</p>
+              </div>
+              <button type="submit">计算</button>
+            </form>
+            <p class="calculator__note">公式来源：史瓦西解 R<sub>s</sub> = 2GM / c²，计算时使用国际单位制常数 G = 6.67430×10<sup>−11</sup> m³/(kg·s²)、c = 299792458 m/s，并将输入的吨数换算为千克。</p>
           </div>
-          <button type="submit">计算</button>
-        </form>
-        <p class="calculator__note">公式来源：史瓦西解 R<sub>s</sub> = 2GM / c²，计算时使用国际单位制常数 G = 6.67430×10<sup>−11</sup> m³/(kg·s²)、c = 299792458 m/s，并将输入的吨数换算为千克。</p>
-        <aside class="calculator-samples">
-          <h3>快速填入常见天体</h3>
-          <ul id="mass-presets">
-            <li><button type="button" data-mass-tons="5.97e18">地球 (5.97×10<sup>21</sup> kg)</button></li>
-            <li><button type="button" data-mass-tons="1.99e27">太阳 (1.99×10<sup>30</sup> kg)</button></li>
-            <li><button type="button" data-mass-tons="8.0e30">参宿四 (8.0×10<sup>33</sup> kg)</button></li>
-            <li><button type="button" data-mass-tons="6.5e39">M87* 黑洞 (6.5×10<sup>42</sup> kg)</button></li>
-            <li><button type="button" data-mass-tons="4.3e36">人马座 A* (4.3×10<sup>39</sup> kg)</button></li>
-          </ul>
-        </aside>
+          <aside class="calculator-samples">
+            <h3>快速填入常见天体</h3>
+            <ul id="mass-presets">
+              <li><button type="button" data-mass-tons="5.97e27">“独角兽”黑洞 (≈3 M<sub>☉</sub>)</button></li>
+              <li><button type="button" data-mass-tons="5.97e18">地球 (5.97×10<sup>21</sup> kg)</button></li>
+              <li><button type="button" data-mass-tons="1.99e27">太阳 (1.99×10<sup>30</sup> kg)</button></li>
+              <li><button type="button" data-mass-tons="8.0e30">参宿四 (8.0×10<sup>33</sup> kg)</button></li>
+              <li><button type="button" data-mass-tons="4.3e36">人马座 A* (4.3×10<sup>39</sup> kg)</button></li>
+              <li><button type="button" data-mass-tons="6.5e39">M87* 黑洞 (6.5×10<sup>42</sup> kg)</button></li>
+              <li><button type="button" data-mass-tons="1.3e38">TON 618 超大质量黑洞 (≈6.6×10<sup>10</sup> M<sub>☉</sub>)</button></li>
+            </ul>
+          </aside>
+        </div>
       </div>
     </section>
 
