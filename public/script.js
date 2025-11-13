@@ -3,8 +3,8 @@ const massInput = document.querySelector('#mass-input');
 const radiusOutput = document.querySelector('#radius-output');
 const currentYearEl = document.querySelector('#current-year');
 
-const G = 6.6743e-11; // m^3 kg^-1 s^-2
-const C = 299792458; // m s^-1
+const G = 6.6743e-11;
+const C = 299792458;
 const TON_TO_KG = 1000;
 
 function formatRadiusMeters(value) {

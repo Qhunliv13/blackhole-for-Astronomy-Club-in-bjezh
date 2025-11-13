@@ -16,8 +16,6 @@ export class RateLimiterDurableObject {
   }
 
   async fetch(request) {
-    // Minimal placeholder to satisfy existing Durable Object binding expectations.
-    // Always allow the request and mirror status payload.
     const cfRay = request.headers.get("cf-ray") || "";
     return new Response(
       JSON.stringify({
